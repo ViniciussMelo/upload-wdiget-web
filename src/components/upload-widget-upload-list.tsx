@@ -3,7 +3,7 @@ import { useUploads } from '../store/uploads';
 
 export function UploadWidgetUploadList() {
   // only render when there is a change on the uploads list
-  const { uploads } = useUploads();
+  const uploads = useUploads(state => state.uploads);
 
   const isUploadListEmpty = uploads.size === 0;
 
