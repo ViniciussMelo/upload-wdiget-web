@@ -1,7 +1,11 @@
 import { UploadWidgetUploadItem } from './upload-widget-upload-item';
+import { useUploads } from '../store/uploads';
 
 export function UploadWidgetUploadList() {
-  const isUploadListEmpty = false;
+  // only render when there is a change on the uploads list
+  const { uploads } = useUploads();
+
+  const isUploadListEmpty = uploads.size === 0;
 
   return (
     <div className="px-3 flex flex-col gap-3">
@@ -13,8 +17,9 @@ export function UploadWidgetUploadList() {
         <span className="text-xs text-zinc-400">No uploads added</span>
       ) : (
         <div className="flex flex-col gap-2">
-          <UploadWidgetUploadItem />
-          <UploadWidgetUploadItem />
+          {Array.from(uploads.entries()).map(([uploadId, upload]) => (
+            <UploadWidgetUploadItem key={uploadId} upload={upload} />
+          ))}
         </div>
       )}
     </div>
