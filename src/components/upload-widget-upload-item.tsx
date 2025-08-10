@@ -12,7 +12,7 @@ interface UploadWidgetUploadItemProps {
 }
 
 export function UploadWidgetUploadItem({ upload, uploadId }: UploadWidgetUploadItemProps) {
-  const { cancelUpload } = useUploads();
+  const cancelUpload = useUploads(state => state.cancelUpload);
 
   const progress = Math.min(
     Math.round((upload.uploadSizeInBytes * 100) / upload.originalSizeInBytes),
