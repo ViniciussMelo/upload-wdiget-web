@@ -12,7 +12,7 @@ interface UploadFileToStorageOpts {
 export async function uploadFileToStorage(
   { file, onProgress }: UploadFileToStorageParams,
   opts?: UploadFileToStorageOpts
-) {
+): Promise<{ url: string }> {
   const data = new FormData();
 
   data.append('file', file);
